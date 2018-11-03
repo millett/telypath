@@ -1,4 +1,4 @@
-name: word_cloud
+name: telypath
 
 channels:
   - conda-forge
