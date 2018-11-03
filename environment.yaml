@@ -1,0 +1,25 @@
+name: word_cloud
+
+channels:
+  - conda-forge
+  - anaconda
+
+dependencies:
+  - python=3.6.4
+  - numpy
+  - matplotlib
+  - pandas
+  - flask
+  - pyyaml
+  - psycopg2
+  - sqlalchemy
+  - scikit-learn
+  - pylint
+  - ipython
+  - jupyter
+  - nltk
+  - pika
+  - beautifulsoup4
+  - pip:
+    - sqlacodegen
+
