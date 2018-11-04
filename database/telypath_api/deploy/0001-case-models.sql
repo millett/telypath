@@ -2,8 +2,14 @@
 
 BEGIN;
 
+CREATE SCHEMA telypath;
+
+alter default privileges in schema telypath grant all on tables to postgres;
+grant all privileges on schema telypath to postgres;
+grant all privileges on all tables in schema telypath to postgres;
+
 create table telypath.cases(
-  id uuid not null,
+  id uuid not null primary key,
   status text not null,
   source text not null,
   tissue_location text not null
