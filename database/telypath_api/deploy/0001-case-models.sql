@@ -24,7 +24,8 @@ create table telypath.cases(
   source text not null,
   tissue_location text not null,
   diagnosis text,
-  slide_resource_id uuid references telypath.slide_resources(id)
+  slide_resource_id uuid references telypath.slide_resources(id),
+  encoded_thumbnail text
 );
 
 COMMIT;

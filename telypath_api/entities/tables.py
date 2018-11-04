@@ -31,5 +31,6 @@ class Case(Base):
     tissue_location = Column(Text, nullable=False)
     diagnosis = Column(Text)
     slide_resource_id = Column(ForeignKey('telypath.slide_resources.id'))
+    encoded_thumbnail = Column(Text)
 
     slide_resource = relationship('SlideResource')

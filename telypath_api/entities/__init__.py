@@ -13,14 +13,16 @@ class PatientCase(namedtuple("PatientCase",
                               "status",
                               "source",
                               "tissue_location",
-                              "diagnosis"])):
+                              "diagnosis",
+                              "thumbnail"])):
     @classmethod
     def from_proxy(cls, row_proxy):
         return cls(id=row_proxy[0],
                    status=row_proxy[1],
                    source=row_proxy[2],
                    tissue_location=row_proxy[3],
-                   diagnosis=row_proxy[4])
+                   diagnosis=row_proxy[4],
+                   thumbnail=row_proxy[6])
 
     @classmethod
     def from_row(cls, case_row):
@@ -28,7 +30,8 @@ class PatientCase(namedtuple("PatientCase",
                    case_row.__dict__["status"],
                    case_row.__dict__["source"],
                    case_row.__dict__["tissue_location"],
-                   case_row.__dict__["diagnosis"])
+                   case_row.__dict__["diagnosis"],
+                   case_row.__dict__["encoded_thumbnail"])
 
 
 class DeepZoomParameters(namedtuple("DeepZoomParameters",
