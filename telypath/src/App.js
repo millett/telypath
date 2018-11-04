@@ -1,38 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { simpleAction } from './redux/action'
-import logo from './logo.svg';
+import { setThemeDark, setThemeLight } from './redux/action'
+import NavBar from './components/NavBar'
+import CaseTable from './components/CaseTable'
 import './App.css';
 
 class App extends Component {
   render() {
-    const simpleAction = (event) => {
-     this.props.simpleAction();
+    console.log(this.props)
+    const setTheme = (event) => {
+      this.props.setThemeLight();
     }
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <div>
-            <button onClick={simpleAction}>Test redux action</button>
-            <pre>
-               {
-                JSON.stringify(this.props)
-               }
-              </pre>
-          </div>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <NavBar />
+        <div style={{height:70}} />
+        <CaseTable />
       </div>
     );
   }
@@ -40,11 +23,21 @@ class App extends Component {
 
 
 const mapStateToProps = state => ({
- ...state
+   ...state
 })
 
 const mapDispatchToProps = dispatch => ({
- simpleAction: () => dispatch(simpleAction())
+ setThemeLight: () => dispatch(setThemeLight()),
+ setThemeDark: () => dispatch(setThemeDark())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+
+/*<button onClick={simpleAction}>Test redux action</button>
+  <pre>
+     {
+      JSON.stringify(this.props)
+     }
+    </pre>
+*/
