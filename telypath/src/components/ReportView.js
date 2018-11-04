@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Document } from 'react-pdf/dist/entry.webpack';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import myPDF from "./bio.pdf"
 import Iframe from 'react-iframe'
 import IconButton from '@material-ui/core/IconButton'
 import Mail from '@material-ui/icons/Mail'
