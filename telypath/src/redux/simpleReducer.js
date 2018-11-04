@@ -38,6 +38,8 @@ export default (
       ...state,
       isDark: false,
     };
+
+  
   case 'SET_PATIENT_DIAGNOSIS':
     const newPatientInfos = {
       ...state.patientInfos
