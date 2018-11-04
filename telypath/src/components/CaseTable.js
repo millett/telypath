@@ -9,33 +9,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 class CaseTable extends React.Component {
   render() {
-    const patientInfos =  [
-      {
-        "id": "78193b6c-c90a-4812-82bc-80990b3df196",
-        "status": "CaseStatus.New",
-        "source": "UPMC",
-        "tissue_location": "Prostate",
-        "diagnosis": null
-      },
-      {
-        "id": "6a66fe3a-b52d-4221-9e25-4316ebafd515",
-        "status": "CaseStatus.InProgress",
-        "source": "SUMC",
-        "tissue_location": "Breast",
-        "diagnosis": null
-      },
-      {
-        "id": "a7d181c4-4af9-4fa9-bcc7-653e37a16ec6",
-        "status": "CaseStatus.SignedOut",
-        "source": "BCH",
-        "tissue_location": "Breast",
-        "diagnosis": null
-      }
-    ]
-
     const getClassAndStatusFromEnum = (status) => {
       switch (status) {
         case "CaseStatus.New":
@@ -47,8 +24,10 @@ class CaseTable extends React.Component {
         default:
           return status
       }
-
     }
+
+    console.log(this.state)
+    console.log(this.props)
 
     return (
       <div>
@@ -84,11 +63,10 @@ class CaseTable extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody className="btn">
-              {patientInfos.map(patientInfo =>{
+              {this.props.simpleReducer.patientInfos.map(patientInfo =>{
                 const obj = getClassAndStatusFromEnum(patientInfo.status)
-                console.log(obj.className)
                 return (
-                    <TableRow key={patientInfo.id} className={obj.className} component={Link} to={'/patientView'}>
+                    <TableRow key={patientInfo.id} className={obj.className} component={Link} to={`/patientView?id=${patientInfo.id}`}>
                       <TableCell>
                         <Typography>
                           {patientInfo.id}
@@ -126,4 +104,8 @@ class CaseTable extends React.Component {
   }
 }
 
-export default CaseTable;
+const mapStateToProps = state => ({
+   ...state
+})
+
+export default connect(mapStateToProps)(CaseTable);

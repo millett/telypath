@@ -4,13 +4,12 @@ import Iframe from 'react-iframe'
 class SlideViewer extends React.Component {
 
   render() {
-    const position = [51.505, -0.09]
     return (
       <Iframe url="http://cancer.digitalslidearchive.net/"
         id="lazyIframe"
         display="initial"
         position="relative"
-
+        height="65vh"
       />
     )
   }

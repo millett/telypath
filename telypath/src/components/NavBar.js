@@ -4,13 +4,26 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowBack from '@material-ui/icons/ArrowBack'
+import Assignment from '@material-ui/icons/Assignment'
 import { Link } from 'react-router-dom'
 const NavBar = () => {
-  const backButton = !window.location.href.includes('patient')
+
+  const onPatientView = !window.location.href.includes('patient')
+
+  const backButton = onPatientView
     ? <IconButton />
     : <IconButton color="inherit" component={Link} to={"/"}>
         <ArrowBack />
       </IconButton>
+
+  const nextButton = onPatientView
+    ? null
+    : (
+      <IconButton style={{textAlign:"right", float:"right", color:"white", marginLeft: "75vw"}}>
+        Generate PDF report
+        <Assignment />
+      </IconButton>
+    )
   return(
       <div>
       <AppBar position="fixed" style={{backgroundColor: "purple"}}>
@@ -19,6 +32,7 @@ const NavBar = () => {
           <Typography variant="title" color="inherit">
             Telypath
           </Typography>
+          {nextButton}
         </Toolbar>
       </AppBar>
       </div>
