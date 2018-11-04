@@ -29,7 +29,10 @@ class Case(Base):
     status = Column(Text, nullable=False)
     source = Column(Text, nullable=False)
     tissue_location = Column(Text, nullable=False)
-    diagnosis = Column(Text)
+    external_id = Column(Text)
+    external_id_type = Column(Text)
+    clinical_notes = Column(Text)
+    clinical_summary = Column(Text)
     slide_resource_id = Column(ForeignKey('telypath.slide_resources.id'))
     encoded_thumbnail = Column(Text)
 
