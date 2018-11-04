@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import Assignment from '@material-ui/icons/Assignment'
 import Mail from '@material-ui/icons/Mail'
-
+import logo from '../telypath_logo.jpg'
 import { Link } from 'react-router-dom'
 const NavBar = () => {
 
@@ -33,7 +33,7 @@ const NavBar = () => {
   };
 
   let patientInfo = (
-    <span style={{color:"white", align:"center", fontSize: "20px", fontWeight: "bold", marginLeft: "20vw", marginRight: "20vw", whiteSpace: "nowrap"}}>
+    <span style={{color:"white", align:"center", fontSize: "20px", fontWeight: "bold", marginLeft: "20vw", marginRight: "5vw", whiteSpace: "nowrap"}}>
       {currentPatientId
         ? `Patient ID: ${currentPatientId}`
         : "Choose a Patient"
@@ -58,9 +58,10 @@ const NavBar = () => {
       <AppBar position="fixed" style={{backgroundColor: "purple"}}>
         <Toolbar>
           {backButton}
-          <Typography variant="title" color="inherit">
-            Telypath
-          </Typography>
+          <img src={logo} style={{
+            height: "5vh",
+            margin: "5px",
+          }}/>
           <Typography>
             {patientInfo}
           </Typography>
