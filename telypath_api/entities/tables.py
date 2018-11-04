@@ -19,6 +19,7 @@ class SlideResource(Base):
     tile_size = Column(Integer, nullable=False)
     height = Column(Integer, nullable=False)
     width = Column(Integer, nullable=False)
+    _class = Column('class', Integer)
 
 
 class Case(Base):
