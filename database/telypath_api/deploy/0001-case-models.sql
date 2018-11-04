@@ -16,7 +16,7 @@ create table telypath.slide_resources(
   tile_size integer not null,
   height integer not null,
   width integer not null,
-  class integer,
+  class integer
 );
 
 create table telypath.cases(
