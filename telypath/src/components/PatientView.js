@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import SlideViewer from "./slideViewer"
+import SlideViewer from "./SlideViewer"
+import {Map} from 'react-leaflet'
 class PatientView extends React.Component {
   render() {
-
     return (
       <div>
         Potatoes
         <div>
-          <div id="garbagio" />
-          <SlideViewer image="http://www.planwallpaper.com/static/images/HD-Wallpapers1_FOSmVKg.jpeg" />
+           <SlideViewer />
+          {/* <SlideViewer id="leaflet-id" style={{height:500, width:500}}/> */}
         </div>
       </div>
     );
