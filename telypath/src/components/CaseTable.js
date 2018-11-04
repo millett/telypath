@@ -10,8 +10,15 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { getCaseList } from '../redux/action'
+
 
 class CaseTable extends React.Component {
+
+  componentWillMount() {
+    this.props.getCaseList()
+  }
+
   render() {
     const getClassAndStatusFromEnum = (status) => {
       switch (status) {
@@ -108,4 +115,8 @@ const mapStateToProps = state => ({
    ...state
 })
 
-export default connect(mapStateToProps)(CaseTable);
+const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
+  getCaseList: () => dispatch(getCaseList()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CaseTable);

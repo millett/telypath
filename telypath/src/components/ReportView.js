@@ -23,7 +23,7 @@ class ReportView extends React.Component {
         <Grid container spacing={24}>
           <Grid item xs={6}>
           {/* <h1 style={{justifyContent:"center"}}>Final Generated Report</h1> */}
-          <Iframe url="https://fenix.tecnico.ulisboa.pt/downloadFile/3779578361014/g_and_m_programming_for_mills_manual.pdf"
+          <Iframe url="https://a.uguu.se/ETeYiHeRULM4_tcga2.pdf"
             id="lazyIdframe"
             display="initial"
             position="relative"
