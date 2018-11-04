@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton'
 import ArrowBack from '@material-ui/icons/ArrowBack'
 import Assignment from '@material-ui/icons/Assignment'
 import Mail from '@material-ui/icons/Mail'
+
 import { Link } from 'react-router-dom'
 const NavBar = () => {
 
@@ -17,7 +18,7 @@ const NavBar = () => {
     const arr = window.location.href.split("?id=");
     currentPatientId = arr[1];
   }
-  let backButtonLink = onPatientView ? "/" : `/patientView?id=${currentPatientId}`
+  let backButtonLink = onPatientView ? "/home" : `/patientView?id=${currentPatientId}`
   if (onPatientView || onReportView) backButton= (
      <IconButton color="inherit" component={Link} to={backButtonLink}>
         <ArrowBack />
@@ -28,9 +29,17 @@ const NavBar = () => {
     textAlign:"right",
     float:"right",
     color:"white",
-    marginLeft: "70vw",
     marginRight: "2vw"
   };
+
+  let patientInfo = (
+    <span style={{color:"white", align:"center", fontSize: "20px", fontWeight: "bold", marginLeft: "20vw", marginRight: "20vw", whiteSpace: "nowrap"}}>
+      {currentPatientId
+        ? `Patient ID: ${currentPatientId}`
+        : "Choose a Patient"
+      }
+    </span>
+  )
 
   let nextButton = onPatientView
     ? (
@@ -43,12 +52,6 @@ const NavBar = () => {
       </IconButton>
     )
     : null;
-  if (onReportView) nextButton =
-    <IconButton
-      style={nextButtonStyle}
-      href={"mailto: mattmillett314@gmail.com"}>
-      Email to listed addresses <Mail />
-    </IconButton>;
 
   return(
       <div>
@@ -57,6 +60,9 @@ const NavBar = () => {
           {backButton}
           <Typography variant="title" color="inherit">
             Telypath
+          </Typography>
+          <Typography>
+            {patientInfo}
           </Typography>
           {nextButton}
         </Toolbar>

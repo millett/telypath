@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Switch } from 'react-router-dom'
 import PatientView from './components/PatientView'
 import ReportView from './components/ReportView'
+import LoginPage from './components/LoginPage'
 
 class App extends Component {
   render() {
@@ -20,7 +21,8 @@ class App extends Component {
           <NavBar />
           <div style={{height:70}} />
           <Switch>
-            <Route exact path="/" component={CaseTable} />
+            <Route exact path="/" component={LoginPage} />
+            <Route exact path="/home" component={CaseTable} />
             <Route path="/patientView" component={PatientView} />
             <Route path="/reportView" component={ReportView} />
           </Switch>
