@@ -4,19 +4,27 @@ import { setThemeDark, setThemeLight } from './redux/action'
 import NavBar from './components/NavBar'
 import CaseTable from './components/CaseTable'
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Switch } from 'react-router-dom'
+import PatientView from './components/PatientView'
 
 class App extends Component {
   render() {
-    console.log(this.props)
     const setTheme = (event) => {
       this.props.setThemeLight();
     }
     return (
-      <div className="App">
-        <NavBar />
-        <div style={{height:70}} />
-        <CaseTable />
-      </div>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <div style={{height:70}} />
+          <Switch>
+            <Route exact path="/" component={CaseTable} />
+            <Route exact path="/patientView" component={PatientView} />
+          </Switch>
+
+        </div>
+      </Router>
     );
   }
 }

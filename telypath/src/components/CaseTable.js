@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
 
 class CaseTable extends React.Component {
   render() {
@@ -34,14 +36,14 @@ class CaseTable extends React.Component {
       }
     ]
 
-    const getColorAndStatusFromEnum = (status) => {
+    const getClassAndStatusFromEnum = (status) => {
       switch (status) {
         case "CaseStatus.New":
-          return {statusText: "New", color: "plum"}
+          return {statusText: "New", className: "newCaseRow"}
         case "CaseStatus.InProgress":
-          return {statusText: "In Progress", color: "PaleGoldenRod"}
+          return {statusText: "In Progress", className: "inProgressCaseRow"}
         case "CaseStatus.SignedOut":
-          return {statusText: "Signed Out", color: "PaleGreen"}
+          return {statusText: "Signed Out", className: "signedOutCaseRow"}
         default:
           return status
       }
@@ -81,39 +83,38 @@ class CaseTable extends React.Component {
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody className="btn">
               {patientInfos.map(patientInfo =>{
-                console.log(patientInfo)
-                const obj = getColorAndStatusFromEnum(patientInfo.status)
-
+                const obj = getClassAndStatusFromEnum(patientInfo.status)
+                console.log(obj.className)
                 return (
-                  <TableRow key={patientInfo.id} style={{background: obj.color}}>
-                    <TableCell>
-                      <Typography>
-                        {patientInfo.id}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography>
-                        {obj.statusText}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography>
-                        {patientInfo.source}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography>
-                        {patientInfo.tissue_location}
-                      </Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography>
-                        {patientInfo.diagnosis}
-                      </Typography>
-                    </TableCell>
-                  </TableRow>
+                    <TableRow key={patientInfo.id} className={obj.className} component={Link} to={'/patientView'}>
+                      <TableCell>
+                        <Typography>
+                          {patientInfo.id}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography>
+                          {obj.statusText}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography>
+                          {patientInfo.source}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography>
+                          {patientInfo.tissue_location}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography>
+                          {patientInfo.diagnosis}
+                        </Typography>
+                      </TableCell>
+                    </TableRow>
                 )
               })
             }
