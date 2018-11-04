@@ -20,7 +20,7 @@ class App extends Component {
           <div style={{height:70}} />
           <Switch>
             <Route exact path="/" component={CaseTable} />
-            <Route exact path="/patientView" component={PatientView} />
+            <Route path="/patientView" component={PatientView} />
           </Switch>
 
         </div>
