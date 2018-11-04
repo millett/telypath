@@ -60,19 +60,18 @@ class ApiServer:
             response_dict = {"patient_case": patient_case._asdict(), "deepzoom_parameters": deepzoom_params}
             return Response(response=json.dumps(response_dict), status=200, content_type="application/json")
 
-        @self.app.route("/api/v1/cases/<string:case_uuid>/diagnosis", methods=["POST"])
+        @self.app.route("/api/v1/cases/<string:case_uuid>/notes", methods=["POST"])
         def add_diagnosis_route(case_uuid):
             print("add diagnosis route")
             content_type_header = next(h[1] for h in request.headers if h[0] == "Content-Type")
             if content_type_header != "application/json":
                 return Response("Bad Request, expects json", status=404)
-            if "diagnosis" not in request.json:
-                return Response("requires 'diagnosis' field", status=400)
             with self.db.connect() as conn:
                 session = self.__get_session(conn)
                 case = session.query(CaseTable).filter(CaseTable.id == case_uuid).first()
                 if case is None:
                     return Response("Not Found", status=400)
-                case.diagnosis = request.json["diagnosis"]
+                case.clinical_notes = request.json.get("clinical_notes", None)
+                case.clinical_summary = request.json.get("clinical_summary", None)
                 session.commit()
             return "ok", 201
