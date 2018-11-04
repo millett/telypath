@@ -25,6 +25,8 @@ export default (
       }
     ]
   }, action) => {
+    console.log('actin called')
+    console.log(action.type)
  switch (action.type) {
   case 'SET_THEME_DARK':
     return {
