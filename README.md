@@ -8,7 +8,7 @@ Digital pathology of the future
 ```bash
 cd database
 ./run-pg.sh  # runs postgres in docker
-# run migtation
+# run migration (password is "postgres")
 psql -h localhost -p 5016 -d telypath -U postgres -f telypath_api/deploy/0001-case-models.sql
 # add insert data
 psql -h localhost -p 5016 -d telypath -U postgres -f telypath_api/inserts.sql
