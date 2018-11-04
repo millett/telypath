@@ -6,6 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 class PatientView extends React.Component {
   render() {
     const arr = window.location.href.split('id=')
@@ -15,18 +16,6 @@ class PatientView extends React.Component {
     return (
       <div style={{padding: "10px"}}>
         <Grid container spacing={24}>
-        <Grid item xs={12}>
-          <Paper style={{textAlign: "center"}}>
-            <span>
-              <span style={{align:"center", fontSize: "20px", fontWeight: "bold"}}>
-                Patient ID: {patientId}
-              </span>
-              <span style={{"float": "right"}}>
-                Source: India
-              </span>
-            </span>
-          </Paper>
-        </Grid>
         <Grid item xs={2}>
           <Paper>
             <h3 style={{textAlign:"center"}}>
@@ -58,17 +47,41 @@ class PatientView extends React.Component {
             <h3 style={{textAlign:"center"}}>Slide info</h3>
             <List>
               <ListItem>
+                <h4>Country:</h4> China
+                </ListItem>
+                <ListItem>
                 <h4>Source:</h4> SUMC
               </ListItem>
               <ListItem>
-                <h4>Diagnosis:</h4>(Awaiting)
+                <h4>Diagnosis:</h4><TextField multiline/>
+              </ListItem>
+              <ListItem>
+              <div>
+                <h3 style={{marginBottom: 0, textAlign: "center"}}>Other Observations</h3>
+                <TextField
+                  id="outlined-multiline-flexible"
+                  label="Macroscopic"
+                  multiline
+                  margin="normal"
+                  variant="outlined"
+                />
+                <span style={{width:"4%"}}>&nbsp;</span>
+                <TextField
+                  id="outlined-multiline-flexible"
+                  label="Microscopic"
+                  multiline
+                  margin="normal"
+                  variant="outlined"
+                />
+                <br/><br/><br/><br/>
+              </div>
               </ListItem>
             </List>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper>
-            <h3 style={{textAlign: "center"}}> Clinical Notes </h3>
+            <h3 style={{textAlign: "center", marginBottom: "0px"}}> Clinical Notes </h3>
             <TextField
               id="outlined-multiline-flexible"
               label="Clinical Notes"
@@ -95,30 +108,22 @@ class PatientView extends React.Component {
         </Grid>
         <Grid item xs={4}>
           <Paper>
-            <div>
-              <h3 style={{marginBottom: 0, textAlign: "center"}}>Other Observations</h3>
-              <TextField
-                id="outlined-multiline-flexible"
-                label="Macroscopic"
-                multiline
-                margin="normal"
-                variant="outlined"
-                style={{"width":"48%", "marginLeft": "2px"}}
-              />
-              <span style={{width:"4%"}}>&nbsp;</span>
-              <TextField
-                id="outlined-multiline-flexible"
-                label="Microscopic"
-                multiline
-                margin="normal"
-                variant="outlined"
-                style={{"width":"48%", "marginRight": "2px"}}
-              />
-              <br/><br/><br/><br/>
-            </div>
+          <h3 style={{textAlign: "center"}}>Other Observations</h3>
+          <div>
+            <TextField
+              label="Other"
+              multiline
+              margin="small"
+              variant="outlined"
+              style={{"width": "90%", marginLeft: "5%", marginRight: "5%", marginBottom: "5%"}}
+            />
+          </div>
           </Paper>
         </Grid>
       </Grid>
+      <Button style={{"background":"green", color:"white", width:"50%", float:"middle", marginLeft:"25%", marginTop: "10px",}}>
+      Save
+      </Button>
       </div>
     );
   }
