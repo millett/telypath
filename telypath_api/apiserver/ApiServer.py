@@ -9,10 +9,11 @@ from entities.tables import SlideResource as SlideTable
 
 
 class ApiServer:
-    def __init__(self, pg_engine, host="0.0.0.0", port=8080):
+    def __init__(self, pg_engine, redox_adapter, host="0.0.0.0", port=8080):
         self.host = host
         self.port = port
         self.db = pg_engine
+        self.redox = redox_adapter
         self.app = Flask(__name__, instance_relative_config=True)
 
     def run(self):
@@ -33,7 +34,7 @@ class ApiServer:
                 slide_resources_query = session.query(SlideTable)
                 cases_result = session.execute(case_query)
                 slide_result = session.execute(slide_resources_query)
-                rows = [PatientCase.from_proxy(row) for row in cases_result]
+                rows = [PatientCase.from_proxy(row, {}) for row in cases_result]
             response_dict = {"patient_cases": [p._asdict() for p in rows], "slides": [dict(s) for s in slide_result]}
             response = Response(response=json.dumps(response_dict), status=200)
             return response
@@ -50,7 +51,12 @@ class ApiServer:
                     deepzoom_params = DeepZoomParameters.from_row(slide_resource)._asdict()
                 else:
                     deepzoom_params = None
-                patient_case = PatientCase.from_row(case)
+
+                print(f"external ID {str(case.__dict__['external_id'])}")
+                print(f"external ID type {str(case.__dict__['external_id'])}")
+
+                demographics = self.redox.get_patient_info(str(case.__dict__["external_id"]), str(case.__dict__["external_id_type"]))
+                patient_case = PatientCase.from_row(case, demographics)
             response_dict = {"patient_case": patient_case._asdict(), "deepzoom_parameters": deepzoom_params}
             return Response(response=json.dumps(response_dict), status=200, content_type="application/json")
 

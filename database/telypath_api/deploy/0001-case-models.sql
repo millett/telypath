@@ -15,7 +15,8 @@ create table telypath.slide_resources(
   url text not null,
   tile_size integer not null,
   height integer not null,
-  width integer not null
+  width integer not null,
+  class integer,
 );
 
 create table telypath.cases(
@@ -23,7 +24,10 @@ create table telypath.cases(
   status text not null,
   source text not null,
   tissue_location text not null,
-  diagnosis text,
+  external_id text,
+  external_id_type text,
+  clinical_notes text,
+  clinical_summary text,
   slide_resource_id uuid references telypath.slide_resources(id),
   encoded_thumbnail text
 );
